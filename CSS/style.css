@@ -65,6 +65,17 @@ img, video {
     color: var(--accent);
 }
 
+.nav-links a[href="productos.html"] {
+    color: var(--accent);
+    font-weight: 700;
+}
+
+.nav-links a[href="productos.html"]:hover,
+.nav-links a[href="productos.html"]:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+}
+
 main {
     max-width: 1200px;
     margin: 0 auto;
@@ -228,7 +239,7 @@ main {
 }
 
 .product-card > img {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 10;
     object-fit: cover;
     border-radius: 0;
 }
@@ -237,6 +248,15 @@ main {
     display: grid;
     gap: 0.25rem;
     padding: 1rem 1.1rem 1.15rem;
+}
+
+.product-card-copy::after {
+    content: "Ver detalles";
+    width: fit-content;
+    margin-top: 0.45rem;
+    color: var(--accent);
+    font-size: 0.85rem;
+    font-weight: 700;
 }
 
 .product-card-category {
@@ -265,6 +285,31 @@ main {
     border: 1px dashed rgba(255, 255, 255, 0.2);
     border-radius: 18px;
     text-align: center;
+}
+
+.products-page-cta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.products-page-cta h2 {
+    margin-bottom: 0.4rem;
+    font-size: clamp(1.35rem, 3vw, 1.8rem);
+}
+
+.products-page-cta .eyebrow {
+    margin-bottom: 0.35rem;
+}
+
+.products-page-cta .btn {
+    flex: 0 0 auto;
 }
 
 .product-modal-dialog {
@@ -516,6 +561,11 @@ main {
     .contact-grid,
     .service-grid {
         grid-template-columns: 1fr;
+    }
+
+    .products-page-cta {
+        align-items: flex-start;
+        flex-direction: column;
     }
 
     .nav-bar {
