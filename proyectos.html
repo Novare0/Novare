@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novare | Proyectos</title>
+    <meta name="description" content="Explora los proyectos destacados de Novare en una galería visual.">
+    <link rel="stylesheet" href="CSS/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-bar">
+            <a href="index.html" class="brand">Novare</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="servicios.html">Servicios</a></li>
+                <li><a href="proyectos.html">Proyectos</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="section">
+            <div class="section-heading">
+                <p class="eyebrow">Proyectos</p>
+                <h1>Una galería visual de todo lo que hemos creado.</h1>
+                <p>Explora videos, imágenes y piezas de branding. Haz clic en cualquier tarjeta para ver el detalle.</p>
+            </div>
+
+            <div class="project-filters" role="toolbar" aria-label="Filtrar proyectos">
+                <button type="button" class="filter-btn active" data-filter="all">Todos</button>
+                <button type="button" class="filter-btn" data-filter="video">Videos</button>
+                <button type="button" class="filter-btn" data-filter="image">Imágenes</button>
+                <button type="button" class="filter-btn" data-filter="branding">Branding</button>
+            </div>
+
+            <div class="project-grid">
+                <article class="project-card" data-type="video" data-category="branding" data-title="Campaña audiovisual" data-description="Video promocional para una marca que buscaba reforzar su presencia digital con una narrativa clara y elegante." data-video-url="https://www.w3schools.com/html/mov_bbb.mp4" data-poster="https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=800&q=80">
+                    <div class="project-media-wrap">
+                        <img class="project-media" src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=800&q=80" alt="Campaña audiovisual">
+                        <span class="project-badge">Video</span>
+                    </div>
+                    <div class="project-content">
+                        <h3>Campaña audiovisual</h3>
+                        <p>Reel y contenido visual para impulsar una marca en redes.</p>
+                    </div>
+                </article>
+
+                <article class="project-card" data-type="image" data-category="digital" data-title="Contenido para redes" data-description="Diseño de piezas visuales para publicaciones y anuncios con estética editorial y moderna." data-image-url="https://images.unsplash.com/photo-1493612276216-ee3925520721?auto=format&fit=crop&w=800&q=80">
+                    <div class="project-media-wrap">
+                        <img class="project-media" src="https://images.unsplash.com/photo-1493612276216-ee3925520721?auto=format&fit=crop&w=800&q=80" alt="Contenido para redes">
+                        <span class="project-badge">Imagen</span>
+                    </div>
+                    <div class="project-content">
+                        <h3>Contenido para redes</h3>
+                        <p>Diseño estratégico para publicaciones impactantes y coherentes.</p>
+                    </div>
+                </article>
+
+                <article class="project-card" data-type="image" data-category="branding" data-title="Identidad visual" data-description="Desarrollo de una identidad visual completa con paleta, tipografía y recursos gráficos para una marca joven." data-image-url="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80">
+                    <div class="project-media-wrap">
+                        <img class="project-media" src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80" alt="Identidad visual">
+                        <span class="project-badge">Branding</span>
+                    </div>
+                    <div class="project-content">
+                        <h3>Identidad visual</h3>
+                        <p>Un sistema de marca pensado para transmitir personalidad y confianza.</p>
+                    </div>
+                </article>
+
+                <article class="project-card" data-type="video" data-category="digital" data-title="Producción editorial" data-description="Video de presentación para una marca que necesitaba comunicar su propuesta de valor con un tono premium." data-video-url="https://www.w3schools.com/html/movie.mp4" data-poster="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80">
+                    <div class="project-media-wrap">
+                        <img class="project-media" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80" alt="Producción editorial">
+                        <span class="project-badge">Video</span>
+                    </div>
+                    <div class="project-content">
+                        <h3>Producción editorial</h3>
+                        <p>Material audiovisual para presentar una marca con mayor impacto.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <div id="projectModal" class="modal" aria-hidden="true">
+        <div class="modal-backdrop" data-close-modal></div>
+        <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <button type="button" class="modal-close" aria-label="Cerrar" data-close-modal>×</button>
+            <div class="modal-body">
+                <div id="modalMedia" class="modal-media"></div>
+                <div class="modal-info">
+                    <p id="modalCategory" class="eyebrow"></p>
+                    <h2 id="modalTitle"></h2>
+                    <p id="modalDescription"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <p>© 2026 Novare. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="JS/main.js"></script>
+</body>
+</html>

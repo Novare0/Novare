@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 920 1432" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-miterlimit:1.5;">
+    <g id="NovareStudioLW" transform="matrix(0.459888,0,0,0.715502,0,0)">
+        <rect x="0" y="0" width="2000" height="2000" style="fill:none;"/>
+        <clipPath id="_clip1">
+            <rect x="0" y="0" width="2000" height="2000"/>
+        </clipPath>
+        <g clip-path="url(#_clip1)">
+            <g transform="matrix(2.174442,0,0,1.39762,-683.878178,-450.181637)">
+                <path d="M399.113,1695.777L399.113,379.44C651.38,621.109 903.647,1044.267 1155.914,1695.777L1155.914,379.44" style="fill:none;stroke:black;stroke-width:125px;"/>
+            </g>
+            <g transform="matrix(2.174442,0,0,1.39762,-1170.837523,-524.772809)">
+                <path d="M1379.861,477.557C1095.057,969.044 850.373,1288.416 685.575,1310.568L1379.861,1671.82" style="fill:none;stroke:black;stroke-width:125px;"/>
+            </g>
+        </g>
+    </g>
+</svg>
