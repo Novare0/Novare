@@ -261,3 +261,16 @@ document.addEventListener('keydown', (event) => {
   }
   render();
 })();
+
+
+/* Responsive navigation */
+document.querySelectorAll('.menu-toggle').forEach((toggle) => {
+  toggle.addEventListener('click', () => {
+    const links = document.querySelector('.nav-links');
+    if (!links) return;
+    const isOpen = links.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    toggle.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
+    toggle.textContent = isOpen ? '×' : '☰';
+  });
+});
