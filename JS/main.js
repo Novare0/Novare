@@ -243,6 +243,16 @@ document.addEventListener('keydown', (event) => {
     digital:{index:'DIGITAL DEPARTMENT / 04',title:'Más allá<br>de la pantalla<span>.</span>',description:'Web, código creativo, interacción y objetos digitales que exploran nuevas formas.',mark:'INTERACT<br>↘'}
   };
   let activeFilter = 'all';
+  const safeMediaUrl = (value, kind = 'media') => {
+    if (!value) return '';
+    try {
+      const url = new URL(String(value), window.location.href);
+      const local = url.origin === window.location.origin;
+      if (!local && url.protocol !== 'https:') return '';
+      if (kind === 'embed' && !['www.youtube.com','youtube.com','www.youtube-nocookie.com','player.vimeo.com'].includes(url.hostname)) return '';
+      return url.href;
+    } catch (_) { return ''; }
+  };
   const safe = (value) => String(value || '').replace(/[&<>"']/g, (char) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
   function render() {
     const visible = entries.filter(item => activeFilter === 'all' || String(item.category).toLowerCase() === activeFilter);
@@ -263,32 +273,60 @@ document.addEventListener('keydown', (event) => {
     }
     count.textContent = String(visible.length).padStart(2,'0') + ' PIEZAS';
     grid.innerHTML = visible.map((item,index) => {
-      const cover = item.cover ? '<img src="' + safe(item.cover) + '" alt="' + safe(item.title) + '" loading="lazy">' : '';
+      const coverUrl = safeMediaUrl(item.cover, 'image');
+      const cover = coverUrl ? '<img src="' + safe(coverUrl) + '" alt="' + safe(item.title) + '" loading="lazy" decoding="async">' : '';
       return '<button class="album-item" type="button" data-entry-index="' + entries.indexOf(item) + '"><span class="album-item-cover">' + cover + '</span><span class="album-item-meta"><span>' + safe(item.category) + ' / ' + safe(item.type || 'piece') + '</span><strong>' + safe(item.title) + '</strong><small>' + safe(item.date || 'NOVARE ARCHIVE') + '</small></span></button>';
     }).join('');
     empty.classList.toggle('is-visible', visible.length === 0);
     grid.querySelectorAll('[data-entry-index]').forEach(card => card.addEventListener('click', () => openEntry(entries[Number(card.dataset.entryIndex)])));
   }
+  let lastAlbumTrigger = null;
   function openEntry(item) {
     if (!modal || !modalMedia) return;
+    lastAlbumTrigger = document.activeElement;
     document.getElementById('albumModalCategory').textContent = String(item.category || 'NOVARE').toUpperCase();
     document.getElementById('albumModalTitle').textContent = item.title || 'Untitled';
     document.getElementById('albumModalDescription').textContent = item.description || '';
     document.getElementById('albumModalDate').textContent = item.date || '';
     modalMedia.innerHTML = '';
-    if (item.type === 'video' && item.media) modalMedia.innerHTML = '<video src="' + safe(item.media) + '" controls autoplay playsinline></video>';
-    else if (item.type === 'audio' && item.media) modalMedia.innerHTML = '<audio src="' + safe(item.media) + '" controls></audio>';
-    else if (item.type === 'embed' && item.media) modalMedia.innerHTML = '<iframe src="' + safe(item.media) + '" title="' + safe(item.title) + '" loading="lazy" allowfullscreen></iframe>';
-    else if (item.media || item.cover) modalMedia.innerHTML = '<img src="' + safe(item.media || item.cover) + '" alt="' + safe(item.title) + '">';
+    const mediaUrl = safeMediaUrl(item.media || item.cover, item.type);
+    if (mediaUrl && item.type === 'video') {
+      const video = document.createElement('video');
+      video.src = mediaUrl; video.controls = true; video.playsInline = true; video.preload = 'metadata';
+      modalMedia.appendChild(video);
+    } else if (mediaUrl && item.type === 'audio') {
+      const audio = document.createElement('audio');
+      audio.src = mediaUrl; audio.controls = true; audio.preload = 'metadata';
+      modalMedia.appendChild(audio);
+    } else if (mediaUrl && item.type === 'embed') {
+      const frame = document.createElement('iframe');
+      frame.src = mediaUrl; frame.title = item.title || 'Contenido incrustado'; frame.loading = 'lazy';
+      frame.allowFullscreen = true; frame.referrerPolicy = 'strict-origin-when-cross-origin';
+      modalMedia.appendChild(frame);
+    } else if (mediaUrl) {
+      const image = document.createElement('img');
+      image.src = mediaUrl; image.alt = item.title || 'Pieza del Álbum'; image.decoding = 'async';
+      modalMedia.appendChild(image);
+    }
     modal.classList.add('is-open'); modal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
+    modal.querySelector('.album-modal-close')?.focus();
   }
   function closeModal() {
     if (!modal) return;
     modal.classList.remove('is-open'); modal.setAttribute('aria-hidden','true'); modalMedia.innerHTML=''; document.body.style.overflow='';
+    if (lastAlbumTrigger && typeof lastAlbumTrigger.focus === 'function') lastAlbumTrigger.focus();
+    lastAlbumTrigger = null;
   }
   filters.forEach(button => button.addEventListener('click', () => {
     activeFilter = button.dataset.albumFilter;
-    filters.forEach(item => item.classList.toggle('is-active', item === button));
+    filters.forEach(item => {
+      const active = item === button;
+      item.classList.toggle('is-active', active);
+      item.setAttribute('aria-pressed', String(active));
+    });
+    const url = new URL(window.location.href);
+    if (activeFilter === 'all') url.searchParams.delete('category'); else url.searchParams.set('category', activeFilter);
+    window.history.replaceState({}, '', url);
     render();
   }));
   modal?.querySelector('.album-modal-close')?.addEventListener('click', closeModal);
