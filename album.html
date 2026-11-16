@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Álbum — Novare®</title><meta name="description" content="Archivo creativo de Novare: imágenes, motion, sonido y experimentos digitales."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="CSS/style.css"></head>
+<body class="album-page" data-page="album"><header class="site-header"><nav class="nav-bar"><a href="index.html" class="brand">NOVARE<span>®</span></a><button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button><ul class="nav-links"><li><a href="index.html">Inicio</a></li><li><a href="servicios.html">Servicios</a></li><li><a href="productos.html">Productos</a></li><li><a href="album.html">Álbum</a></li><li><a href="contacto.html">Contacto</a></li></ul></nav></header>
+<main id="albumRoot">
+<section class="album-intro"><div class="hero-topline"><span>THE NOVARE ARCHIVE / VOL. 01</span><span>OPEN COLLECTION</span></div><p class="eyebrow">[ A LIVING ARCHIVE ]</p><h1>ÁL<br>BUM<span>.</span></h1><div class="album-intro-bottom"><p>Un espacio para todo lo que hacemos, encontramos, mezclamos o imaginamos. Cada pieza tiene su propio universo.</p><span>SCROLL TO EXPLORE ↓</span></div></section>
+<section class="album-explore"><div class="section-kicker">[ SELECT A FREQUENCY ]</div><div class="category-grid" role="group" aria-label="Categorías del Álbum">
+<button class="category-card category-all is-active" data-album-filter="all"><span>00 / EVERYTHING</span><strong>Todo<br>junto.</strong><i>↘</i></button>
+<button class="category-card category-visuals" data-album-filter="visuals"><span>01 / VISUALS</span><strong>Ver<br>distinto.</strong><i>↘</i></button>
+<button class="category-card category-motion" data-album-filter="motion"><span>02 / MOTION</span><strong>En<br>movimiento.</strong><i>↘</i></button>
+<button class="category-card category-sound" data-album-filter="sound"><span>03 / SOUND</span><strong>Escuchar<br>el ruido.</strong><i>↘</i></button>
+<button class="category-card category-digital" data-album-filter="digital"><span>04 / DIGITAL</span><strong>Fuera<br>del marco.</strong><i>↘</i></button>
+</div></section>
+<section class="album-feed"><div class="feed-heading"><div><p class="eyebrow">[ THE COLLECTION ]</p><h2 id="albumHeading">Todo el archivo<span>.</span></h2></div><span id="albumCount">0 PIEZAS</span></div><div id="albumGrid" class="album-grid" aria-live="polite"></div><div id="albumEmpty" class="album-empty"><span>— NO SIGNAL —</span><h3>Este espacio está esperando<br>su próxima pieza.</h3><p>El archivo se actualiza cuando Novare publica algo nuevo.</p></div></section>
+</main>
+<div class="album-modal" id="albumModal" aria-hidden="true"><button class="album-modal-close" type="button" aria-label="Cerrar">×</button><div class="album-modal-content"><div id="albumModalMedia" class="album-modal-media"></div><div class="album-modal-copy"><p id="albumModalCategory" class="eyebrow"></p><h2 id="albumModalTitle"></h2><p id="albumModalDescription"></p><span id="albumModalDate"></span></div></div></div>
+<footer class="site-footer"><a class="brand" href="index.html">NOVARE®</a><span>AN OPEN-ENDED ARCHIVE.</span><span>© NOVARE 2026</span></footer>
+<script src="JS/album-data.js"></script><script src="JS/main.js"></script></body></html>
