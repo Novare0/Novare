@@ -468,3 +468,15 @@ html[data-theme="light"] .btn-primary{color:#111214}
   opacity: .65;
   cursor: wait;
 }
+
+
+/* LAUNCH PASS — accessibility, navigation and responsive polish */
+.skip-link{position:fixed;top:12px;left:12px;z-index:1000;padding:.8rem 1rem;background:var(--lime);color:#111214;font:600 .8rem var(--mono);transform:translateY(-160%);transition:transform .18s ease}
+.skip-link:focus{transform:translateY(0);outline:3px solid var(--ink);outline-offset:3px}
+:target{scroll-margin-top:6rem}
+.nav-links a[aria-current="page"]{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:6px}
+button:disabled{cursor:not-allowed}
+.album-modal[role="dialog"]{overscroll-behavior:contain}
+.album-modal:focus{outline:none}
+.product-card:focus-visible,.category-card:focus-visible{outline:3px solid var(--lime);outline-offset:4px}
+@media(prefers-reduced-motion:reduce){.skip-link{transition:none}}
