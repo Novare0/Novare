@@ -30,4 +30,4 @@ Campos:
 - `cover`: ruta de la portada.
 - `media`: ruta del archivo principal (puede ser igual a cover).
 
-El sitio es estático: sube los archivos al repositorio y edita el arreglo para publicar. No requiere panel ni base de datos.
+El sitio es estático: sube los archivos al repositorio y edita el arreglo para publicar. No requiere panel ni base de datos. Para embeds externos, usa únicamente URLs HTTPS de YouTube, YouTube NoCookie o Vimeo.
