@@ -210,3 +210,26 @@ main{width:100%;max-width:none;margin:0;padding:0 3vw 3vw}
  .modal{padding:1rem}.modal-dialog{padding:1.2rem}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
+
+
+/* HEADER / RESPONSIVE FIX */
+.site-header{position:sticky;top:0;z-index:200;width:100%;background:var(--paper);border-bottom:2px solid var(--ink)}
+.site-header .nav-bar{position:relative;width:100%;min-height:76px;margin:0;padding:12px clamp(18px,3vw,48px);display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:clamp(16px,3vw,48px)}
+.site-header .brand{display:inline-flex;align-items:flex-start;flex:0 0 auto;white-space:nowrap;line-height:1}
+.site-header .nav-links{position:static;display:flex!important;flex:0 1 auto;flex-direction:row;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:clamp(12px,2vw,30px);min-width:0;margin:0;padding:0;list-style:none;background:transparent;border:0}
+.site-header .nav-links li{display:block;flex:0 0 auto;margin:0;padding:0}
+.site-header .nav-links a{display:block;white-space:nowrap;padding:8px 0;font:500 .7rem var(--mono);letter-spacing:.04em;text-transform:uppercase}
+.site-header .menu-toggle{display:none!important;flex:0 0 42px;width:42px;height:42px;align-items:center;justify-content:center;border:2px solid var(--ink);background:transparent;color:var(--ink);font-size:1.25rem;line-height:1;cursor:pointer}
+@media(max-width:900px){
+ .site-header .nav-bar{min-height:68px;flex-wrap:nowrap}
+ .site-header .menu-toggle{display:inline-flex!important}
+ .site-header .nav-links{position:absolute;top:calc(100% + 2px);left:0;right:0;z-index:210;display:none!important;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:0;padding:10px clamp(18px,5vw,40px) 18px;background:var(--paper);border-bottom:2px solid var(--ink);box-shadow:0 8px 0 rgba(23,23,23,.08)}
+ .site-header .nav-links.is-open{display:flex!important}
+ .site-header .nav-links li{width:100%;border-bottom:1px solid var(--line)}
+ .site-header .nav-links li:last-child{border-bottom:0}
+ .site-header .nav-links a{padding:13px 0;font-size:.78rem}
+}
+@media(max-width:380px){
+ .site-header .nav-bar{padding-left:16px;padding-right:16px}
+ .site-header .brand{font-size:1.25rem}
+}
