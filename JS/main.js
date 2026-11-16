@@ -348,3 +348,29 @@ document.addEventListener('keydown', (event) => {
     observer.observe(element);
   });
 })();
+
+
+/* NOVARE THEME CONTROL — dark by default */
+(() => {
+  const root = document.documentElement;
+  const button = document.querySelector('.theme-toggle');
+  let theme = 'dark';
+  try {
+    theme = localStorage.getItem('novare-theme') === 'light' ? 'light' : 'dark';
+  } catch (_) {}
+  const apply = () => {
+    root.dataset.theme = theme;
+    if (!button) return;
+    const isDark = theme === 'dark';
+    button.textContent = isDark ? '☼' : '☾';
+    button.setAttribute('aria-pressed', String(isDark));
+    button.setAttribute('aria-label', isDark ? 'Cambiar a tema claro' : 'Cambiar a tema oscuro');
+    button.title = isDark ? 'Cambiar a tema claro' : 'Cambiar a tema oscuro';
+  };
+  apply();
+  button?.addEventListener('click', () => {
+    theme = theme === 'dark' ? 'light' : 'dark';
+    try { localStorage.setItem('novare-theme', theme); } catch (_) {}
+    apply();
+  });
+})();
