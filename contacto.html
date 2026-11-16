@@ -31,7 +31,7 @@
                 <h1>Hablemos de tu próximo proyecto.</h1>
             </div>
             <div class="contact-grid">
-                <form class="contact-form" id="novareContactForm">
+                <form class="contact-form" id="novareContactForm" action="https://formsubmit.co/novareestudio@gmail.com" method="POST">
                     <label for="nombre">Nombre</label>
                     <input type="text" id="nombre" name="name" placeholder="Tu nombre" autocomplete="name" maxlength="100" required>
 
@@ -43,6 +43,7 @@
 
                     <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" class="form-honeypot">
                     <input type="hidden" name="_subject" value="Nueva solicitud desde la web de Novare">
+                    <input type="hidden" name="_replyto" id="contactReplyTo">
                     <button type="submit" class="btn btn-primary" id="contactSubmit">Enviar mensaje</button>
                     <p class="contact-form-status" id="contactFormStatus" role="status" aria-live="polite"></p>
                 </form>
