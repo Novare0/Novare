@@ -382,3 +382,62 @@ html[data-theme="light"] .album-category-intro{background:#171717;color:#f3f0e8}
  .album-category-index{grid-column:1;grid-row:1}
  .album-category-intro h2{font-size:clamp(2.5rem,11vw,4.5rem)}
 }
+
+
+/* DARK THEME / TYPOGRAPHY CONTRAST PASS */
+:root{
+ --text-primary:#f3f0e8;
+ --text-secondary:#c5c2ba;
+ --text-muted:#a6a39b;
+}
+body,p,li,dd,dt,label,small,figcaption{color:var(--text-secondary)}
+h1,h2,h3,h4,h5,h6,strong,b,.brand,.nav-links a,.eyebrow,.section-kicker{color:var(--text-primary)}
+p{line-height:1.7}
+.eyebrow,.section-kicker,.hero-topline,.hero-index,.album-category-index,.album-category-mark,
+.feed-heading>span,.album-count,.product-card-category,.product-card-price{
+ color:var(--text-muted);
+}
+a{color:inherit}
+a:hover{color:var(--lime)}
+.home-hero h1,.album-intro h1,.manifesto h2,.lab-heading h2,.album-teaser h2,.contact-strip h2,
+.section-heading h1,.feed-heading h2{color:var(--text-primary)}
+.manifesto-content>p,.lab-heading>p,.album-teaser-side>p,.contact-strip p,
+.section-heading>p:not(.eyebrow),.card p,.contact-info p{color:var(--text-secondary)}
+.lab-tile,.category-card{color:#111214}
+.lab-tile span,.lab-tile b,.lab-tile i,.category-card span,.category-card strong,.category-card i{color:inherit}
+.album-category-intro p{color:#c5c2ba}
+.album-feed .album-item-title,.album-item h3,.album-item strong{color:var(--text-primary)}
+.album-item p,.album-item small,.album-item-meta{color:var(--text-secondary)}
+.album-empty h3{color:var(--text-primary)}
+.album-empty p{color:var(--text-muted)}
+.product-card-title{color:var(--text-primary)}
+.product-card-category,.product-card-price{color:var(--text-muted)}
+.contact-form label{color:var(--text-primary)}
+.contact-form input,.contact-form textarea{color:var(--text-primary);caret-color:var(--lime)}
+.contact-form input::placeholder,.contact-form textarea::placeholder{color:#918e87;opacity:1}
+.contact-info h3{color:var(--text-primary)}
+.contact-info p,.contact-info li{color:#c5c2ba}
+.site-footer p,.site-footer a,.site-footer small{color:var(--text-secondary)}
+.btn-primary{color:#111214}
+.btn-secondary{color:var(--text-primary)}
+.nav-links a[aria-current=page]{color:var(--lime)}
+.modal-dialog h2,.modal-dialog h3,.modal-dialog p,.modal-dialog label{color:var(--text-primary)}
+.modal-dialog p:not(.eyebrow){color:var(--text-secondary)}
+::selection{background:var(--lime);color:#111214}
+html[data-theme="light"]{
+ --text-primary:#171717;
+ --text-secondary:#45423c;
+ --text-muted:#625f58;
+}
+html[data-theme="light"] body,html[data-theme="light"] p,html[data-theme="light"] li,
+html[data-theme="light"] dd,html[data-theme="light"] dt,html[data-theme="light"] label,
+html[data-theme="light"] small,html[data-theme="light"] figcaption{color:var(--text-secondary)}
+html[data-theme="light"] h1,html[data-theme="light"] h2,html[data-theme="light"] h3,
+html[data-theme="light"] h4,html[data-theme="light"] h5,html[data-theme="light"] h6,
+html[data-theme="light"] strong,html[data-theme="light"] b,html[data-theme="light"] .brand,
+html[data-theme="light"] .nav-links a{color:var(--text-primary)}
+html[data-theme="light"] .lab-tile,html[data-theme="light"] .category-card{color:#111214}
+html[data-theme="light"] .album-category-intro h2,html[data-theme="light"] .album-category-intro p{color:#f3f0e8}
+html[data-theme="light"] .contact-info h3{color:#f3f0e8}
+html[data-theme="light"] .contact-info p,html[data-theme="light"] .contact-info li{color:#d1cbbb}
+html[data-theme="light"] .btn-primary{color:#111214}
