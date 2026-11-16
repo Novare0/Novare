@@ -347,3 +347,38 @@ html[data-theme="light"] .theme-toggle:hover{color:#111214}
  .site-header .nav-links{background:var(--paper);border-color:var(--ink)}
  .site-header .theme-toggle{margin-left:auto}
 }
+
+
+/* ALBUM / CATEGORY WORLDS */
+.album-category-intro{--category-accent:var(--lime);position:relative;display:grid;grid-template-columns:1fr 2fr auto;align-items:end;gap:2rem;margin-top:1.4rem;padding:2rem 1.6rem;min-height:230px;background:#1b1d20;color:#f3f0e8;border:1.5px solid rgba(243,240,232,.28);overflow:hidden;transition:background-color .3s,border-color .3s}
+.album-category-intro:before{content:"";position:absolute;inset:0 auto 0 0;width:8px;background:var(--category-accent)}
+.album-category-index,.album-category-mark{font:600 .65rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--category-accent)}
+.album-category-intro h2{font-size:clamp(2.4rem,5.7vw,5.8rem);line-height:.86;letter-spacing:-.08em}
+.album-category-intro h2 span{color:var(--category-accent)}
+.album-category-intro p{max-width:450px;margin-top:1.1rem;color:#c4c1b8;font-size:1rem}
+.album-category-mark{text-align:right;line-height:1.5}
+.album-category-intro[data-category="visuals"]{--category-accent:#c5ff4a}
+.album-category-intro[data-category="motion"]{--category-accent:#ff725e}
+.album-category-intro[data-category="sound"]{--category-accent:#8797ff}
+.album-category-intro[data-category="digital"]{--category-accent:#c8b8ff}
+.album-category-intro[data-category="all"]{--category-accent:#f3f0e8}
+.album-category-intro[data-category]:not([data-category="all"]){background:#111214}
+.category-card{position:relative;isolation:isolate}
+.category-card:focus-visible{outline:3px solid var(--ink);outline-offset:-6px}
+.category-card.is-active{box-shadow:inset 0 -9px 0 rgba(17,18,20,.18)}
+.album-feed{transition:background-color .3s}
+.album-item{transition:transform .28s cubic-bezier(.2,.8,.2,1),border-color .2s,box-shadow .28s}
+.album-item:hover{transform:translate(-4px,-4px);box-shadow:6px 6px 0 var(--lime)}
+.album-item:focus-visible{outline:3px solid var(--lime);outline-offset:4px}
+.album-item-cover{background:#292c30}
+.album-item-meta span{color:var(--lime)}
+.album-empty{color:var(--ink)}
+.album-empty p{color:var(--muted)}
+html[data-theme="light"] .album-category-intro{background:#171717;color:#f3f0e8}
+@media(max-width:760px){
+ .album-category-intro{grid-template-columns:1fr auto;gap:1.4rem;padding:1.5rem 1.2rem;min-height:0}
+ .album-category-intro>div{grid-column:1/-1;grid-row:2}
+ .album-category-mark{grid-column:2;grid-row:1}
+ .album-category-index{grid-column:1;grid-row:1}
+ .album-category-intro h2{font-size:clamp(2.5rem,11vw,4.5rem)}
+}
