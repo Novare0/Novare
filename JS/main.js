@@ -235,11 +235,32 @@ document.addEventListener('keydown', (event) => {
   const modal = document.getElementById('albumModal');
   const modalMedia = document.getElementById('albumModalMedia');
   const labels = {all:'Todo el archivo',visuals:'Visuals',motion:'Motion',sound:'Sound',digital:'Digital'};
+  const categoryCopy = {
+    all:{index:'INDEX / 00',title:'Todo lo que<br>hemos creado<span>.</span>',description:'Una colección abierta de ideas, piezas y experimentos. Sin una sola forma de hacer las cosas.',mark:'OPEN<br>ARCHIVE ↘'},
+    visuals:{index:'VISUAL DEPARTMENT / 01',title:'Ideas que<br>se pueden ver<span>.</span>',description:'Identidad, imagen, fotografía, composición y exploraciones gráficas.',mark:'IMAGE<br>MADE ↘'},
+    motion:{index:'MOTION DEPARTMENT / 02',title:'El diseño<br>en movimiento<span>.</span>',description:'Video, animación, secuencias y experimentos donde el tiempo también diseña.',mark:'TIME<br>BASED ↘'},
+    sound:{index:'SOUND DEPARTMENT / 03',title:'Frecuencias<br>con identidad<span>.</span>',description:'Música, diseño sonoro, paisajes de audio y ruido convertido en lenguaje.',mark:'SOUND<br>ON ↘'},
+    digital:{index:'DIGITAL DEPARTMENT / 04',title:'Más allá<br>de la pantalla<span>.</span>',description:'Web, código creativo, interacción y objetos digitales que exploran nuevas formas.',mark:'INTERACT<br>↘'}
+  };
   let activeFilter = 'all';
   const safe = (value) => String(value || '').replace(/[&<>"']/g, (char) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
   function render() {
     const visible = entries.filter(item => activeFilter === 'all' || String(item.category).toLowerCase() === activeFilter);
     heading.textContent = labels[activeFilter] || activeFilter.toUpperCase();
+    const intro = document.getElementById('albumCategoryIntro');
+    const copy = categoryCopy[activeFilter] || {
+      index:'NEW DEPARTMENT / +',
+      title:activeFilter.toUpperCase()+'<br>IN THE MAKING<span>.</span>',
+      description:'Una nueva frecuencia dentro del archivo creativo de Novare.',
+      mark:'NEW<br>FIELD ↘'
+    };
+    if (intro) {
+      intro.dataset.category = activeFilter;
+      intro.querySelector('.album-category-index').textContent = copy.index;
+      intro.querySelector('h2').innerHTML = copy.title;
+      intro.querySelector('p').textContent = copy.description;
+      intro.querySelector('.album-category-mark').innerHTML = copy.mark;
+    }
     count.textContent = String(visible.length).padStart(2,'0') + ' PIEZAS';
     grid.innerHTML = visible.map((item,index) => {
       const cover = item.cover ? '<img src="' + safe(item.cover) + '" alt="' + safe(item.title) + '" loading="lazy">' : '';
