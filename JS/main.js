@@ -395,3 +395,55 @@ document.addEventListener('keydown', (event) => {
     apply();
   });
 })();
+
+
+/* NOVARE CONTACT FORM — FormSubmit */
+(() => {
+  const form = document.getElementById('novareContactForm');
+  if (!form) return;
+
+  const submitButton = document.getElementById('contactSubmit');
+  const status = document.getElementById('contactFormStatus');
+  const endpoint = 'https://formsubmit.co/ajax/novareestudio@gmail.com';
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (!form.reportValidity()) return;
+
+    const originalLabel = submitButton.textContent;
+    submitButton.disabled = true;
+    submitButton.textContent = 'Enviando...';
+    form.setAttribute('aria-busy', 'true');
+    status.textContent = 'Enviando tu mensaje a Novare...';
+    status.removeAttribute('data-state');
+
+    const payload = Object.fromEntries(new FormData(form).entries());
+    delete payload._honey;
+
+    try {
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+      const result = await response.json();
+      if (!response.ok || String(result.success).toLowerCase() !== 'true') {
+        throw new Error(result.message || 'No se pudo enviar el mensaje.');
+      }
+
+      status.textContent = '¡Mensaje enviado! Gracias por contactar a Novare. Te responderemos pronto.';
+      status.dataset.state = 'success';
+      form.reset();
+    } catch (error) {
+      status.textContent = 'No pudimos enviar el mensaje. Escríbenos directamente a novareestudio@gmail.com.';
+      status.dataset.state = 'error';
+    } finally {
+      submitButton.disabled = false;
+      submitButton.textContent = originalLabel;
+      form.removeAttribute('aria-busy');
+    }
+  });
+})();
