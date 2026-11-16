@@ -285,3 +285,65 @@ main{width:100%;max-width:none;margin:0;padding:0 3vw 3vw}
  .reveal-on-scroll{opacity:1!important;transform:none!important;transition:none!important}
  .service-grid .card,.product-card,.product-card>img,.products-section .filter-btn{transition:none!important}
 }
+
+
+/* NOVARE DARK MODE — default identity */
+:root{
+ color-scheme:dark;
+ --ink:#f3f0e8;--paper:#111214;--paper-2:#1b1d20;--lime:#c5ff4a;
+ --coral:#ff725e;--blue:#7185ff;--violet:#c8b8ff;--concrete:#292c30;
+ --muted:#a6a39b;--line:rgba(243,240,232,.24);
+}
+body{background:var(--paper);color:var(--ink)}
+.site-header{background:rgba(17,18,20,.94);backdrop-filter:blur(14px);border-color:var(--ink)}
+.brand,.nav-links a,.menu-toggle{color:var(--ink)}
+.nav-links a:hover,.nav-links a[aria-current=page]{color:var(--lime)}
+.menu-toggle,.theme-toggle{border:1.5px solid var(--ink);background:transparent;color:var(--ink)}
+.theme-toggle{display:inline-grid;place-items:center;flex:0 0 42px;width:42px;height:42px;margin-left:auto;font-size:1.2rem;cursor:pointer;transition:background .2s,color .2s,transform .2s}
+.theme-toggle:hover{background:var(--lime);color:#111214;transform:rotate(-12deg)}
+.nav-bar{gap:clamp(12px,2vw,28px)}
+.nav-links{margin-left:auto}
+.site-footer{color:var(--ink);border-color:var(--line)}
+.card,.contact-form,.contact-info,.modal-dialog{background:var(--paper-2);color:var(--ink);border-color:var(--ink)}
+.contact-form input,.contact-form textarea{background:#202226;color:var(--ink);border-color:#666}
+.product-card,.album-item{background:var(--paper-2);color:var(--ink);border-color:var(--ink)}
+.product-card-copy{background:var(--paper-2)}
+.product-modal-info>p:not(.eyebrow),.product-contact-content>p:not(.eyebrow){color:var(--muted)}
+.album-item-meta small{color:var(--muted)}
+.album-empty{border-color:var(--line)}
+.album-modal{background:rgba(5,6,8,.97)}
+.category-card{border-color:#111214}
+.category-all{background:#f3f0e8;color:#111214}
+.category-visuals{background:#c5ff4a;color:#111214}
+.category-motion{background:#ff725e;color:#111214}
+.category-sound{background:#7185ff;color:#fff}
+.category-digital{background:#c8b8ff;color:#17151e}
+.category-custom{background:#292c30;color:#f3f0e8;border-color:var(--ink)}
+.hero-stamp{mix-blend-mode:screen}
+.album-teaser{background:#050607;color:#f3f0e8}
+.album-teaser .section-kicker{color:var(--lime)}
+.contact-info{background:#1b1d20}
+.btn-secondary{color:var(--ink);border-color:var(--ink)}
+.products-page-cta{color:#111214}
+.products-page-cta p:not(.eyebrow){color:#343b28}
+html[data-theme="light"]{
+ color-scheme:light;
+ --ink:#171717;--paper:#f2ebdd;--paper-2:#e8dfce;--lime:#b8f34a;
+ --coral:#ff6347;--blue:#465bff;--violet:#c8b8ff;--concrete:#c9c4b8;
+ --muted:#625f58;--line:rgba(23,23,23,.28);
+}
+html[data-theme="light"] body{background:var(--paper);color:var(--ink)}
+html[data-theme="light"] .site-header{background:rgba(242,235,221,.94)}
+html[data-theme="light"] .brand,html[data-theme="light"] .nav-links a,html[data-theme="light"] .menu-toggle,html[data-theme="light"] .theme-toggle{color:var(--ink)}
+html[data-theme="light"] .card,html[data-theme="light"] .contact-form,html[data-theme="light"] .contact-info,html[data-theme="light"] .modal-dialog{background:var(--paper);color:var(--ink)}
+html[data-theme="light"] .contact-form input,html[data-theme="light"] .contact-form textarea{background:#fffdf8;color:var(--ink)}
+html[data-theme="light"] .product-card,html[data-theme="light"] .album-item,html[data-theme="light"] .product-card-copy{background:var(--paper);color:var(--ink)}
+html[data-theme="light"] .contact-info{background:var(--ink);color:var(--paper)}
+html[data-theme="light"] .contact-info p,html[data-theme="light"] .contact-info li{color:#d1cbbb}
+html[data-theme="light"] .album-modal{background:rgba(23,23,23,.95)}
+html[data-theme="light"] .site-footer{color:var(--ink)}
+html[data-theme="light"] .theme-toggle:hover{color:#111214}
+@media(max-width:900px){
+ .site-header .nav-links{background:var(--paper);border-color:var(--ink)}
+ .site-header .theme-toggle{margin-left:auto}
+}
