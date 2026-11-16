@@ -203,3 +203,61 @@ document.addEventListener('keydown', (event) => {
         }
     }
 });
+\n
+/* NOVARE ALBUM */
+(() => {
+  const grid = document.getElementById('albumGrid');
+  if (!grid) return;
+  const entries = Array.isArray(window.NOVARE_ALBUM) ? window.NOVARE_ALBUM : [];
+  const filters = [...document.querySelectorAll('[data-album-filter]')];
+  const heading = document.getElementById('albumHeading');
+  const count = document.getElementById('albumCount');
+  const empty = document.getElementById('albumEmpty');
+  const modal = document.getElementById('albumModal');
+  const modalMedia = document.getElementById('albumModalMedia');
+  const labels = {all:'Todo el archivo',visuals:'Visuals',motion:'Motion',sound:'Sound',digital:'Digital'};
+  let activeFilter = 'all';
+  const safe = (value) => String(value || '').replace(/[&<>"']/g, (char) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+  function render() {
+    const visible = entries.filter(item => activeFilter === 'all' || String(item.category).toLowerCase() === activeFilter);
+    heading.textContent = labels[activeFilter] || activeFilter.toUpperCase();
+    count.textContent = String(visible.length).padStart(2,'0') + ' PIEZAS';
+    grid.innerHTML = visible.map((item,index) => {
+      const cover = item.cover ? '<img src="' + safe(item.cover) + '" alt="' + safe(item.title) + '" loading="lazy">' : '';
+      return '<button class="album-item" type="button" data-entry-index="' + entries.indexOf(item) + '"><span class="album-item-cover">' + cover + '</span><span class="album-item-meta"><span>' + safe(item.category) + ' / ' + safe(item.type || 'piece') + '</span><strong>' + safe(item.title) + '</strong><small>' + safe(item.date || 'NOVARE ARCHIVE') + '</small></span></button>';
+    }).join('');
+    empty.classList.toggle('is-visible', visible.length === 0);
+    grid.querySelectorAll('[data-entry-index]').forEach(card => card.addEventListener('click', () => openEntry(entries[Number(card.dataset.entryIndex)])));
+  }
+  function openEntry(item) {
+    if (!modal || !modalMedia) return;
+    document.getElementById('albumModalCategory').textContent = String(item.category || 'NOVARE').toUpperCase();
+    document.getElementById('albumModalTitle').textContent = item.title || 'Untitled';
+    document.getElementById('albumModalDescription').textContent = item.description || '';
+    document.getElementById('albumModalDate').textContent = item.date || '';
+    modalMedia.innerHTML = '';
+    if (item.type === 'video' && item.media) modalMedia.innerHTML = '<video src="' + safe(item.media) + '" controls autoplay playsinline></video>';
+    else if (item.type === 'audio' && item.media) modalMedia.innerHTML = '<audio src="' + safe(item.media) + '" controls></audio>';
+    else if (item.type === 'embed' && item.media) modalMedia.innerHTML = '<iframe src="' + safe(item.media) + '" title="' + safe(item.title) + '" loading="lazy" allowfullscreen></iframe>';
+    else if (item.media || item.cover) modalMedia.innerHTML = '<img src="' + safe(item.media || item.cover) + '" alt="' + safe(item.title) + '">';
+    modal.classList.add('is-open'); modal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
+  }
+  function closeModal() {
+    if (!modal) return;
+    modal.classList.remove('is-open'); modal.setAttribute('aria-hidden','true'); modalMedia.innerHTML=''; document.body.style.overflow='';
+  }
+  filters.forEach(button => button.addEventListener('click', () => {
+    activeFilter = button.dataset.albumFilter;
+    filters.forEach(item => item.classList.toggle('is-active', item === button));
+    render();
+  }));
+  modal?.querySelector('.album-modal-close')?.addEventListener('click', closeModal);
+  modal?.addEventListener('click', event => { if (event.target === modal) closeModal(); });
+  document.addEventListener('keydown', event => { if (event.key === 'Escape') closeModal(); });
+  const requested = new URLSearchParams(location.search).get('category');
+  if (requested && labels[requested]) {
+    activeFilter = requested;
+    filters.forEach(button => button.classList.toggle('is-active', button.dataset.albumFilter === requested));
+  }
+  render();
+})();
