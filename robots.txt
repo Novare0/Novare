@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://novare0.github.io/Novare/sitemap.xml
