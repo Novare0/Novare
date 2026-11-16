@@ -203,7 +203,8 @@ document.addEventListener('keydown', (event) => {
         }
     }
 });
-\n
+
+
 /* NOVARE ALBUM */
 (() => {
   const grid = document.getElementById('albumGrid');
