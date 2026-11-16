@@ -260,7 +260,7 @@ document.addEventListener('keydown', (event) => {
     const intro = document.getElementById('albumCategoryIntro');
     const copy = categoryCopy[activeFilter] || {
       index:'NEW DEPARTMENT / +',
-      title:activeFilter.toUpperCase()+'<br>IN THE MAKING<span>.</span>',
+      title:safe(activeFilter).toUpperCase()+'<br>IN THE MAKING<span>.</span>',
       description:'Una nueva frecuencia dentro del archivo creativo de Novare.',
       mark:'NEW<br>FIELD ↘'
     };
