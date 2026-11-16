@@ -282,14 +282,68 @@ document.addEventListener('keydown', (event) => {
 })();
 
 
-/* Responsive navigation */
-document.querySelectorAll('.menu-toggle').forEach((toggle) => {
-  toggle.addEventListener('click', () => {
-    const links = document.querySelector('.nav-links');
-    if (!links) return;
-    const isOpen = links.classList.toggle('is-open');
-    toggle.setAttribute('aria-expanded', String(isOpen));
-    toggle.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
-    toggle.textContent = isOpen ? '×' : '☰';
+/* NOVARE GLOBAL NAVIGATION + MOTION */
+(() => {
+  const nav = document.querySelector('.site-header .nav-bar');
+  if (!nav) return;
+  const toggle = nav.querySelector('.menu-toggle');
+  const links = nav.querySelector('.nav-links');
+  const closeMenu = () => {
+    if (!toggle || !links) return;
+    links.classList.remove('is-open');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Abrir menú');
+    toggle.textContent = '☰';
+  };
+  if (toggle && links) {
+    toggle.addEventListener('click', () => {
+      const open = !links.classList.contains('is-open');
+      links.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+      toggle.textContent = open ? '×' : '☰';
+    });
+    links.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+    document.addEventListener('click', event => {
+      if (!nav.contains(event.target)) closeMenu();
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') closeMenu();
+    });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 900) closeMenu();
+    });
+  }
+
+  const currentFile = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
+  links?.querySelectorAll('a').forEach(link => {
+    const target = link.getAttribute('href')?.split('?')[0].toLowerCase();
+    if (target === currentFile || (currentFile === '' && target === 'index.html')) {
+      link.setAttribute('aria-current', 'page');
+    } else {
+      link.removeAttribute('aria-current');
+    }
   });
-});
+
+  const main = document.querySelector('main');
+  if (main) main.classList.add('page-enter');
+  const motionTargets = document.querySelectorAll(
+    '.section-heading, .service-grid .card, .products-page-cta, .product-card, .contact-info, .album-explore, .album-feed'
+  );
+  if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    motionTargets.forEach(element => element.classList.add('is-visible'));
+    return;
+  }
+  const observer = new IntersectionObserver((entries, instance) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        instance.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -35px 0px' });
+  motionTargets.forEach(element => {
+    element.classList.add('reveal-on-scroll');
+    observer.observe(element);
+  });
+})();
