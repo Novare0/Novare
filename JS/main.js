@@ -210,6 +210,24 @@ document.addEventListener('keydown', (event) => {
   if (!grid) return;
   const entries = Array.isArray(window.NOVARE_ALBUM) ? window.NOVARE_ALBUM : [];
   const filters = [...document.querySelectorAll('[data-album-filter]')];
+  const known = new Set(filters.map(button => button.dataset.albumFilter));
+  const customCategories = [...new Set(entries.map(item => String(item.category || '').toLowerCase()).filter(Boolean))].filter(category => !known.has(category));
+  const categoryGrid = document.querySelector('.category-grid');
+  customCategories.forEach(category => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'category-card category-custom';
+    button.dataset.albumFilter = category;
+    const label = document.createElement('span');
+    label.textContent = 'NEW / ' + category.toUpperCase();
+    const title = document.createElement('strong');
+    title.textContent = category.charAt(0).toUpperCase() + category.slice(1) + '.';
+    const arrow = document.createElement('i');
+    arrow.textContent = '↘';
+    button.append(label, title, arrow);
+    categoryGrid?.appendChild(button);
+    filters.push(button);
+  });
   const heading = document.getElementById('albumHeading');
   const count = document.getElementById('albumCount');
   const empty = document.getElementById('albumEmpty');
@@ -255,7 +273,7 @@ document.addEventListener('keydown', (event) => {
   modal?.addEventListener('click', event => { if (event.target === modal) closeModal(); });
   document.addEventListener('keydown', event => { if (event.key === 'Escape') closeModal(); });
   const requested = new URLSearchParams(location.search).get('category');
-  if (requested && labels[requested]) {
+  if (requested && filters.some(button => button.dataset.albumFilter === requested)) {
     activeFilter = requested;
     filters.forEach(button => button.classList.toggle('is-active', button.dataset.albumFilter === requested));
   }
