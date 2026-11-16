@@ -315,7 +315,7 @@ document.addEventListener('keydown', (event) => {
     });
   }
 
-  const lastSegment = window.location.pathname.replace(/\\/+$/, '').split('/').pop() || '';\n  const currentFile = (lastSegment.includes('.') ? lastSegment : 'index.html').toLowerCase();
+  const lastSegment = window.location.pathname.replace(/\/+$/, '').split('/').pop() || '';
   links?.querySelectorAll('a').forEach(link => {
     const target = link.getAttribute('href')?.split('?')[0].toLowerCase();
     if (target === currentFile || (currentFile === '' && target === 'index.html')) {
