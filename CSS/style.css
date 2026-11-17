@@ -1114,3 +1114,27 @@ html[data-theme="light"] .tile-digital:focus-visible { color: #171717; }
 .album-item-cover .album-soundcloud-cover i { color: #f3f0e8; }
 .album-item-cover .album-soundcloud-cover small,
 .album-item-cover .album-soundcloud-cover i { color: var(--lime); }
+
+
+/* ALBUM COVER TEXT — override the light-theme .album-item strong rule.
+   These covers are intentionally dark in BOTH themes, so their typography
+   must remain light regardless of the page's color scheme. */
+.album-item-cover .album-soundcloud-cover,
+.album-item-cover .album-soundcloud-cover strong,
+.album-item-cover .album-link-cover,
+.album-item-cover .album-link-cover strong {
+  color: #f3f0e8;
+}
+html[data-theme="light"] .album-item-cover .album-soundcloud-cover strong,
+html[data-theme="light"] .album-item-cover .album-link-cover strong {
+  color: #f3f0e8;
+}
+.album-item-cover .album-soundcloud-cover small,
+.album-item-cover .album-soundcloud-cover i,
+.album-item-cover .album-link-cover small {
+  color: var(--lime);
+}
+.album-item-cover .album-soundcloud-cover i,
+.album-item-cover .album-link-cover i {
+  color: #ff725e;
+}
