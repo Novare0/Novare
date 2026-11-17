@@ -495,3 +495,84 @@ button:disabled{cursor:not-allowed}
 .payment-policy strong{color:var(--text-primary)}
 .product-payment-note{margin-top:1rem;padding:.85rem 1rem;border-left:3px solid var(--lime);background:rgba(197,255,74,.06);font-size:.88rem;line-height:1.6}
 .product-contact-details li{line-height:1.65}
+
+
+/* ALBUM / EXTERNAL PLATFORM CARDS */
+.album-item-cover--link{
+  display:flex;
+  align-items:stretch;
+  justify-content:stretch;
+  background:#1b1d20;
+}
+.album-link-cover{
+  width:100%;
+  min-height:100%;
+  padding:1.1rem;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  color:#f3f0e8;
+  background:linear-gradient(135deg,#1b1d20 0%,#292c30 100%);
+}
+.album-link-cover small{
+  font:600 .62rem var(--mono);
+  letter-spacing:.12em;
+  color:#c5ff4a;
+}
+.album-link-cover strong{
+  font:700 clamp(1.8rem,4vw,3.3rem) var(--sans);
+  line-height:.82;
+  letter-spacing:-.08em;
+  white-space:pre-line;
+}
+.album-link-cover i{
+  align-self:flex-end;
+  color:#ff725e;
+  font-size:1.8rem;
+  font-style:normal;
+}
+.album-link-preview{
+  min-height:280px;
+  padding:1.5rem;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  background:#1b1d20;
+  border:1px solid rgba(243,240,232,.2);
+  color:#f3f0e8;
+}
+.album-link-preview span{
+  color:#c5ff4a;
+  font:600 .68rem var(--mono);
+  letter-spacing:.1em;
+}
+.album-link-preview strong{
+  font:700 clamp(3rem,8vw,6rem) var(--sans);
+  line-height:.8;
+  letter-spacing:-.09em;
+  white-space:pre-line;
+}
+.album-external-link{
+  display:inline-flex;
+  width:fit-content;
+  max-width:100%;
+  margin-top:1rem;
+  padding:.9rem 1.1rem;
+  background:#c5ff4a;
+  color:#111214;
+  font:600 .7rem var(--mono);
+  text-decoration:none;
+  letter-spacing:.04em;
+  transition:transform .2s,background .2s;
+}
+.album-external-link:hover{
+  transform:translate(3px,-3px);
+  background:#ff725e;
+}
+.album-external-link:focus-visible{
+  outline:3px solid #f3f0e8;
+  outline-offset:4px;
+}
+@media(max-width:560px){
+  .album-link-preview{min-height:220px}
+}
