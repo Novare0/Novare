@@ -488,3 +488,10 @@ button:disabled{cursor:not-allowed}
 .footer-socials a:hover,.footer-socials a:focus-visible{color:var(--lime);text-decoration:underline;text-underline-offset:4px}
 .footer-socials a:focus-visible{outline:2px solid var(--lime);outline-offset:4px}
 @media(max-width:640px){.footer-socials{gap:.8rem 1rem}}
+
+
+/* PAYMENT / IN-PERSON DELIVERY INFORMATION */
+.payment-policy{max-width:760px;margin:1.25rem 0 0;padding:1rem 1.15rem;border:1px solid var(--lime);border-left:5px solid var(--lime);background:rgba(197,255,74,.06);color:var(--text-secondary);font-size:.9rem}
+.payment-policy strong{color:var(--text-primary)}
+.product-payment-note{margin-top:1rem;padding:.85rem 1rem;border-left:3px solid var(--lime);background:rgba(197,255,74,.06);font-size:.88rem;line-height:1.6}
+.product-contact-details li{line-height:1.65}
