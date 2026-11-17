@@ -1002,3 +1002,89 @@ button:disabled{cursor:not-allowed}
 .products-section .filter-btn:hover {
   color: var(--lime-ink, #111214);
 }
+
+
+/* DEFINITIVE THEME CONTRAST MAP
+   Foreground colors are paired with the actual surface in both themes.
+   Keep this block last so generic typography rules cannot wash out tile text. */
+:root {
+  --text-primary: #f3f0e8;
+  --text-secondary: #c5c2ba;
+  --text-muted: #a6a39b;
+  --lime-ink: #111214;
+}
+html[data-theme="light"] {
+  --text-primary: #171717;
+  --text-secondary: #45423c;
+  --text-muted: #625f58;
+  --lime-ink: #111214;
+}
+
+/* Normal page typography */
+body { color: var(--text-primary); }
+p, li, dd, dt, label, small, figcaption { color: var(--text-secondary); }
+h1, h2, h3, h4, h5, h6, strong, b { color: var(--text-primary); }
+
+/* Lab tiles */
+.lab-tile { color: var(--text-primary); }
+.tile-visuals { color: #111214; }
+.tile-motion { color: #171717; }
+.tile-sound { color: #ffffff; }
+:root:not([data-theme="light"]) .tile-digital { color: #f3f0e8; }
+html[data-theme="light"] .tile-digital { color: #171717; }
+.lab-tile > span, .lab-tile > b, .lab-tile > i { color: inherit; }
+
+/* Album category tiles */
+.category-card { color: var(--text-primary); }
+.category-all { background: #f3f0e8; color: #111214; }
+.category-visuals { background: var(--lime); color: #111214; }
+.category-motion { background: #ff725e; color: #171717; }
+.category-sound { background: #7185ff; color: #ffffff; }
+.category-digital { background: #c8b8ff; color: #17151e; }
+.category-custom { background: #292c30; color: #f3f0e8; }
+html[data-theme="light"] .category-custom {
+  background: #c9c4b8;
+  color: #171717;
+}
+.category-card > span, .category-card > strong, .category-card > i { color: inherit; }
+
+/* Service cards: each card has its own readable foreground */
+.service-grid .card:nth-child(1) { background: var(--lime); color: #111214; }
+.service-grid .card:nth-child(2) { background: var(--coral); color: #171717; }
+.service-grid .card:nth-child(3) { background: var(--blue); color: #ffffff; }
+.service-grid .card:nth-child(4) { background: var(--concrete); color: #171717; }
+.service-grid .card h3,
+.service-grid .card p { color: inherit; }
+
+/* Lime action surfaces always use dark text */
+.products-page-cta, .btn-primary, .filter-btn.active, .filter-btn:hover,
+.album-item-cover:after, .theme-toggle:hover, .round-link:hover,
+.contact-arrow:hover, .skip-link, .album-modal-close:hover {
+  color: #111214;
+}
+.products-page-cta p, .products-page-cta h2,
+.btn-primary *, .filter-btn.active *, .filter-btn:hover * { color: inherit; }
+
+/* Light theme surfaces and controls */
+html[data-theme="light"] .contact-info { color: #f3f0e8; }
+html[data-theme="light"] .contact-info h3 { color: #f3f0e8; }
+html[data-theme="light"] .contact-info p,
+html[data-theme="light"] .contact-info li { color: #d1cbbb; }
+html[data-theme="light"] .album-category-intro,
+html[data-theme="light"] .album-category-intro h2,
+html[data-theme="light"] .album-category-intro p { color: #f3f0e8; }
+html[data-theme="light"] .album-category-intro p { color: #c5c2ba; }
+html[data-theme="light"] .btn-secondary { color: #171717; }
+html[data-theme="light"] .product-card-title,
+html[data-theme="light"] .album-item strong { color: #171717; }
+html[data-theme="light"] .product-card-price,
+html[data-theme="light"] .album-item small { color: #625f58; }
+
+/* Dark theme form controls remain legible */
+:root:not([data-theme="light"]) .contact-form input,
+:root:not([data-theme="light"]) .contact-form textarea {
+  background: #202226;
+  color: #f3f0e8;
+}
+:root:not([data-theme="light"]) .contact-form input::placeholder,
+:root:not([data-theme="light"]) .contact-form textarea::placeholder { color: #a6a39b; }
