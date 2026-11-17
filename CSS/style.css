@@ -3,7 +3,7 @@
 */
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 :root{
-  --ink:#171717;--paper:#f2ebdd;--paper-2:#e8dfce;--lime:#b8f34a;
+  --ink:#171717;--paper:#f2ebdd;--paper-2:#e8dfce;--lime:#b8f34a;--lime-ink:#111214;
   --coral:#ff6347;--blue:#465bff;--violet:#c8b8ff;--concrete:#c9c4b8;
   --muted:#625f58;--line:rgba(23,23,23,.28);--status-success:#4f7f1d;
   --display:'Space Grotesk',Arial,sans-serif;--mono:'IBM Plex Mono',monospace;
@@ -290,7 +290,7 @@ main{width:100%;max-width:none;margin:0;padding:0 3vw 3vw}
 /* NOVARE DARK MODE — default identity */
 :root{
  color-scheme:dark;
- --ink:#f3f0e8;--paper:#111214;--paper-2:#1b1d20;--lime:var(--lime);
+ --ink:#f3f0e8;--paper:#111214;--paper-2:#1b1d20;--lime:#c5ff4a;--lime-ink:#111214;
  --coral:#ff725e;--blue:#7185ff;--violet:#c8b8ff;--concrete:#292c30;
  --muted:#a6a39b;--line:rgba(243,240,232,.24);--status-success:#a8e65c;
 }
@@ -928,4 +928,77 @@ button:disabled{cursor:not-allowed}
     transition: none !important;
     animation: none !important;
   }
+}
+
+
+/* CONTRAST REPAIR — every accent surface gets its own readable foreground */
+.tile-visuals,
+.category-visuals,
+.products-page-cta,
+.service-grid .card:nth-child(1),
+.btn-primary,
+.filter-btn.active,
+.filter-btn:hover,
+.album-item-cover:after,
+.theme-toggle:hover,
+.round-link:hover,
+.contact-arrow:hover,
+.skip-link {
+  color: var(--lime-ink, #111214);
+}
+
+.tile-visuals *,
+.category-visuals *,
+.products-page-cta *,
+.service-grid .card:nth-child(1) *,
+.filter-btn.active *,
+.filter-btn:hover *,
+.album-item-cover:after * {
+  color: inherit;
+}
+
+/* The digital tile uses a dark concrete surface, not the lime foreground. */
+.tile-digital {
+  color: var(--ink);
+}
+.tile-digital * {
+  color: inherit;
+}
+
+/* Keep foreground contrast paired with each category's actual background. */
+.tile-motion,
+.category-motion {
+  color: #171717;
+}
+.tile-motion *,
+.category-motion * {
+  color: inherit;
+}
+.tile-sound,
+.category-sound {
+  color: #fff;
+}
+.tile-sound *,
+.category-sound * {
+  color: inherit;
+}
+.tile-digital,
+.category-digital {
+  color: #17151e;
+}
+.tile-digital *,
+.category-digital * {
+  color: inherit;
+}
+.category-all {
+  color: var(--paper);
+}
+.category-all * {
+  color: inherit;
+}
+
+/* Active filter controls must remain readable in both themes. */
+.products-section .filter-btn.active,
+.products-section .filter-btn:hover {
+  color: var(--lime-ink, #111214);
 }
