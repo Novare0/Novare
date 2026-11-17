@@ -1088,3 +1088,29 @@ html[data-theme="light"] .album-item small { color: #625f58; }
 }
 :root:not([data-theme="light"]) .contact-form input::placeholder,
 :root:not([data-theme="light"]) .contact-form textarea::placeholder { color: #a6a39b; }
+
+
+/* TARGETED FIX — hover links must not inherit the global lime link color.
+   SoundCloud cover titles stay light even when the page theme is light. */
+.lab-tile:hover,
+.lab-tile:focus-visible { color: inherit; }
+.lab-tile:hover > span,
+.lab-tile:hover > b,
+.lab-tile:hover > i,
+.lab-tile:focus-visible > span,
+.lab-tile:focus-visible > b,
+.lab-tile:focus-visible > i { color: inherit; }
+.tile-visuals:hover, .tile-visuals:focus-visible { color: #111214; }
+.tile-motion:hover, .tile-motion:focus-visible { color: #171717; }
+.tile-sound:hover, .tile-sound:focus-visible { color: #ffffff; }
+:root:not([data-theme="light"]) .tile-digital:hover,
+:root:not([data-theme="light"]) .tile-digital:focus-visible { color: #f3f0e8; }
+html[data-theme="light"] .tile-digital:hover,
+html[data-theme="light"] .tile-digital:focus-visible { color: #171717; }
+
+.album-item-cover .album-soundcloud-cover,
+.album-item-cover .album-soundcloud-cover strong,
+.album-item-cover .album-soundcloud-cover small,
+.album-item-cover .album-soundcloud-cover i { color: #f3f0e8; }
+.album-item-cover .album-soundcloud-cover small,
+.album-item-cover .album-soundcloud-cover i { color: var(--lime); }
