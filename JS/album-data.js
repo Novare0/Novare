@@ -1,39 +1,26 @@
 /* Añade aquí las publicaciones del Álbum.
    Guarda los archivos en ASSETS/album/ y registra cada pieza en este arreglo.
    category: visuals | motion | sound | digital | (cualquier categoría nueva)
-   type: image | video | audio | embed
+   type: image | video | audio | embed | link
+   Para enlaces externos usa externalUrl y platform.
 */
 window.NOVARE_ALBUM = [
-  /*
   {
-    id: "signal-lost",
-    title: "SIGNAL LOST_",
-    description: "Una exploración visual sobre señales, ruido y desconexión.",
+    id: "novare-pinterest-selection",
+    title: "VISUAL INDEX / 01",
+    description: "Una selección visual de Novare. Explora la pieza original y otras referencias desde Pinterest.",
     category: "visuals",
-    date: "2026-11-16",
-    type: "image",
-    cover: "ASSETS/album/signal-lost/cover.jpg",
-    media: "ASSETS/album/signal-lost/full.jpg"
+    type: "link",
+    platform: "PINTEREST",
+    externalUrl: "https://pin.it/1lo2LGH7S"
   },
   {
-    id: "motion-test-01",
-    title: "MOTION TEST 01",
-    description: "Estudio breve de movimiento y ritmo.",
-    category: "motion",
-    date: "2026-11-16",
-    type: "video",
-    cover: "ASSETS/album/motion-test/cover.jpg",
-    media: "ASSETS/album/motion-test/video.mp4"
-  },
-  {
-    id: "sound-study-01",
-    title: "SOUND STUDY 01",
-    description: "Boceto sonoro / estudio de frecuencias.",
+    id: "novare-soundcloud-selection",
+    title: "SOUND TRANSMISSION / 01",
+    description: "Una pieza sonora de Novare. Escúchala desde su publicación original en SoundCloud.",
     category: "sound",
-    date: "2026-11-16",
-    type: "audio",
-    cover: "ASSETS/album/sound-study/audio-cover.jpg",
-    media: "ASSETS/album/sound-study/audio.mp3"
+    type: "link",
+    platform: "SOUNDCLOUD",
+    externalUrl: "https://on.soundcloud.com/DrmsslI9PrEXvVxZrE"
   }
-  */
 ];
