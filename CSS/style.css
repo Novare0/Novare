@@ -619,3 +619,165 @@ button:disabled{cursor:not-allowed}
   border:0;
   background:#17191b;
 }
+
+
+/* MOBILE FINISHING PASS — touch, viewport and modal ergonomics */
+@media (max-width: 640px) {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    overflow-x: clip;
+  }
+
+  .site-header .nav-bar {
+    min-height: 68px;
+    gap: 12px;
+  }
+
+  .site-header .menu-toggle,
+  .site-header .theme-toggle {
+    width: 44px;
+    height: 44px;
+    flex-basis: 44px;
+  }
+
+  .site-header .nav-links a {
+    display: flex;
+    align-items: center;
+    min-height: 46px;
+  }
+
+  .hero-main h1 {
+    font-size: clamp(4rem, 18vw, 7rem);
+    overflow-wrap: anywhere;
+  }
+
+  .hero-stamp {
+    right: 5%;
+    top: 31%;
+    font-size: clamp(3.5rem, 15vw, 6rem);
+  }
+
+  .section-heading h1,
+  .section-heading h2 {
+    font-size: clamp(2.5rem, 10.5vw, 4.2rem);
+    overflow-wrap: break-word;
+  }
+
+  .album-intro {
+    min-height: 72svh;
+    padding-bottom: 2rem;
+  }
+
+  .album-intro .eyebrow {
+    margin-top: clamp(2rem, 7vh, 4rem);
+  }
+
+  .album-intro h1 {
+    font-size: clamp(6rem, 22vw, 9rem);
+  }
+
+  .filter-btn,
+  .category-card,
+  .btn,
+  .contact-form button {
+    min-height: 44px;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    font-size: 16px;
+  }
+
+  .modal {
+    align-items: flex-start;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: max(1rem, env(safe-area-inset-top)) 1rem max(1rem, env(safe-area-inset-bottom));
+  }
+
+  .modal-dialog {
+    max-height: calc(100vh - 2rem);
+    max-height: calc(100dvh - 2rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .album-modal {
+    align-items: flex-start;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: max(1rem, env(safe-area-inset-top)) 1rem max(1rem, env(safe-area-inset-bottom));
+  }
+
+  .album-modal-content {
+    max-height: none;
+    padding-top: 3rem;
+    gap: 1.25rem;
+  }
+
+  .album-modal-close {
+    position: fixed;
+    top: max(.5rem, env(safe-area-inset-top));
+    right: 1rem;
+    z-index: 2;
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    background: rgba(17, 18, 20, .82);
+    font-size: 2.25rem;
+  }
+
+  .album-modal-media img,
+  .album-modal-media video {
+    max-height: 58svh;
+  }
+
+  .footer-socials a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero-topline,
+  .hero-index {
+    gap: .5rem;
+    font-size: .55rem;
+  }
+
+  .hero-bottom p {
+    max-width: 29ch;
+  }
+
+  .album-intro h1 {
+    font-size: clamp(5.5rem, 21vw, 7rem);
+  }
+
+  .category-card {
+    padding: .75rem;
+  }
+
+  .category-card strong {
+    font-size: clamp(1.25rem, 7vw, 1.7rem);
+  }
+
+  .product-modal-image {
+    max-height: 42svh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-stamp,
+  .round-link,
+  .lab-tile,
+  .product-card,
+  .album-item {
+    transition: none !important;
+  }
+}
