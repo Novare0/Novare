@@ -520,7 +520,7 @@ button:disabled{cursor:not-allowed}
   color:#c5ff4a;
 }
 .album-link-cover strong{
-  font:700 clamp(1.8rem,4vw,3.3rem) var(--sans);
+  font:700 clamp(1.8rem,4vw,3.3rem) var(--display);
   line-height:.82;
   letter-spacing:-.08em;
   white-space:pre-line;
@@ -547,7 +547,7 @@ button:disabled{cursor:not-allowed}
   letter-spacing:.1em;
 }
 .album-link-preview strong{
-  font:700 clamp(3rem,8vw,6rem) var(--sans);
+  font:700 clamp(3rem,8vw,6rem) var(--display);
   line-height:.8;
   letter-spacing:-.09em;
   white-space:pre-line;
