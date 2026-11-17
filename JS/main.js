@@ -253,6 +253,14 @@ document.addEventListener('keydown', (event) => {
       return url.href;
     } catch (_) { return ''; }
   };
+  const safeExternalUrl = (value) => {
+    if (!value) return '';
+    try {
+      const url = new URL(String(value));
+      const allowedHosts = ['pin.it','www.pinterest.com','pinterest.com','on.soundcloud.com','soundcloud.com','www.soundcloud.com'];
+      return url.protocol === 'https:' && allowedHosts.includes(url.hostname) ? url.href : '';
+    } catch (_) { return ''; }
+  };
   const safe = (value) => String(value || '').replace(/[&<>"']/g, (char) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
   function render() {
     const visible = entries.filter(item => activeFilter === 'all' || String(item.category).toLowerCase() === activeFilter);
@@ -274,8 +282,13 @@ document.addEventListener('keydown', (event) => {
     count.textContent = String(visible.length).padStart(2,'0') + ' PIEZAS';
     grid.innerHTML = visible.map((item,index) => {
       const coverUrl = safeMediaUrl(item.cover, 'image');
-      const cover = coverUrl ? '<img src="' + safe(coverUrl) + '" alt="' + safe(item.title) + '" loading="lazy" decoding="async">' : '';
-      return '<button class="album-item" type="button" data-entry-index="' + entries.indexOf(item) + '"><span class="album-item-cover">' + cover + '</span><span class="album-item-meta"><span>' + safe(item.category) + ' / ' + safe(item.type || 'piece') + '</span><strong>' + safe(item.title) + '</strong><small>' + safe(item.date || 'NOVARE ARCHIVE') + '</small></span></button>';
+      const cover = coverUrl
+        ? '<img src="' + safe(coverUrl) + '" alt="' + safe(item.title) + '" loading="lazy" decoding="async">'
+        : item.type === 'link'
+          ? '<span class="album-link-cover"><small>EXTERNAL SIGNAL</small><strong>' + safe(item.platform || 'NOVARE') + '</strong><i>↗</i></span>'
+          : '';
+      const coverClass = item.type === 'link' && !coverUrl ? ' album-item-cover--link' : '';
+      return '<button class="album-item" type="button" data-entry-index="' + entries.indexOf(item) + '"><span class="album-item-cover' + coverClass + '">' + cover + '</span><span class="album-item-meta"><span>' + safe(item.category) + ' / ' + safe(item.type || 'piece') + '</span><strong>' + safe(item.title) + '</strong><small>' + safe(item.date || 'NOVARE ARCHIVE') + '</small></span></button>';
     }).join('');
     empty.classList.toggle('is-visible', visible.length === 0);
     grid.querySelectorAll('[data-entry-index]').forEach(card => card.addEventListener('click', () => openEntry(entries[Number(card.dataset.entryIndex)])));
@@ -307,6 +320,26 @@ document.addEventListener('keydown', (event) => {
       const image = document.createElement('img');
       image.src = mediaUrl; image.alt = item.title || 'Pieza del Álbum'; image.decoding = 'async';
       modalMedia.appendChild(image);
+    } else if (item.type === 'link') {
+      const platform = document.createElement('div');
+      platform.className = 'album-link-preview';
+      const eyebrow = document.createElement('span');
+      eyebrow.textContent = 'NOVARE / ' + String(item.platform || 'EXTERNAL').toUpperCase();
+      const mark = document.createElement('strong');
+      mark.textContent = item.platform === 'SOUNDCLOUD' ? 'SOUND\nON.' : 'VISUAL\nINDEX.';
+      platform.append(eyebrow, mark);
+      modalMedia.appendChild(platform);
+      const externalUrl = safeExternalUrl(item.externalUrl);
+      if (externalUrl) {
+        const link = document.createElement('a');
+        link.className = 'album-external-link';
+        link.href = externalUrl;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.textContent = 'ABRIR EN ' + String(item.platform || 'LA PLATAFORMA').toUpperCase() + ' ↗';
+        link.setAttribute('aria-label', 'Abrir ' + String(item.title || 'contenido') + ' en ' + String(item.platform || 'la plataforma'));
+        modalMedia.appendChild(link);
+      }
     }
     modal.classList.add('is-open'); modal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
     modal.querySelector('.album-modal-close')?.focus();
