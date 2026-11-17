@@ -284,10 +284,12 @@ document.addEventListener('keydown', (event) => {
       const coverUrl = safeMediaUrl(item.cover, 'image');
       const cover = coverUrl
         ? '<img src="' + safe(coverUrl) + '" alt="' + safe(item.title) + '" loading="lazy" decoding="async">'
-        : item.type === 'link'
-          ? '<span class="album-link-cover"><small>EXTERNAL SIGNAL</small><strong>' + safe(item.platform || 'NOVARE') + '</strong><i>↗</i></span>'
-          : '';
-      const coverClass = item.type === 'link' && !coverUrl ? ' album-item-cover--link' : '';
+        : item.type === 'soundcloud'
+          ? '<span class="album-soundcloud-cover"><small>NOVARE / SOUND</small><strong>' + safe(item.title) + '</strong><i>LISTEN ↗</i></span>'
+          : item.type === 'link'
+            ? '<span class="album-link-cover"><small>EXTERNAL SIGNAL</small><strong>' + safe(item.platform || 'NOVARE') + '</strong><i>↗</i></span>'
+            : '';
+      const coverClass = (item.type === 'link' || item.type === 'soundcloud') && !coverUrl ? ' album-item-cover--link' : '';
       return '<button class="album-item" type="button" data-entry-index="' + entries.indexOf(item) + '"><span class="album-item-cover' + coverClass + '">' + cover + '</span><span class="album-item-meta"><span>' + safe(item.category) + ' / ' + safe(item.type || 'piece') + '</span><strong>' + safe(item.title) + '</strong><small>' + safe(item.date || 'NOVARE ARCHIVE') + '</small></span></button>';
     }).join('');
     empty.classList.toggle('is-visible', visible.length === 0);
@@ -316,6 +318,30 @@ document.addEventListener('keydown', (event) => {
       frame.src = mediaUrl; frame.title = item.title || 'Contenido incrustado'; frame.loading = 'lazy';
       frame.allowFullscreen = true; frame.referrerPolicy = 'strict-origin-when-cross-origin';
       modalMedia.appendChild(frame);
+    } else if (item.type === 'soundcloud') {
+      const trackUrl = safeExternalUrl(item.externalUrl);
+      if (trackUrl && new URL(trackUrl).hostname === 'soundcloud.com') {
+        const frame = document.createElement('iframe');
+        const playerUrl = new URL('https://w.soundcloud.com/player/');
+        playerUrl.searchParams.set('url', trackUrl);
+        playerUrl.searchParams.set('color', 'c5ff4a');
+        playerUrl.searchParams.set('auto_play', 'false');
+        playerUrl.searchParams.set('hide_related', 'true');
+        playerUrl.searchParams.set('show_comments', 'false');
+        playerUrl.searchParams.set('show_user', 'true');
+        playerUrl.searchParams.set('show_reposts', 'false');
+        playerUrl.searchParams.set('visual', 'false');
+        frame.src = playerUrl.href;
+        frame.title = 'Reproductor de SoundCloud: ' + (item.title || 'Novare');
+        frame.loading = 'lazy';
+        frame.allow = 'autoplay';
+        frame.width = '100%';
+        frame.height = item.externalUrl.includes('/sets/') ? '450' : '166';
+        frame.scrolling = 'no';
+        frame.frameBorder = '0';
+        frame.referrerPolicy = 'strict-origin-when-cross-origin';
+        modalMedia.appendChild(frame);
+      }
     } else if (mediaUrl) {
       const image = document.createElement('img');
       image.src = mediaUrl; image.alt = item.title || 'Pieza del Álbum'; image.decoding = 'async';
